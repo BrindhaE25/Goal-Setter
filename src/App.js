@@ -1,4 +1,5 @@
 import './App.css';
+import CourseGoalInput from './components/CourseGoalInput/CourseGoalInput';
 import CourseGoalList from './components/CourseGoalList/CourseGoalList'
 
 function App() {
@@ -8,6 +9,7 @@ function App() {
   ];
   return (
     <section id='goals'>
+      <CourseGoalInput/>
       <CourseGoalList goals = {dummy_goals}/>
     </section>
   );
