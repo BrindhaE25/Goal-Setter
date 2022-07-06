@@ -12,14 +12,25 @@ function App() {
 
   const onAddNewGoalHandler = (newGoal) => {
     setGoal(prevGoal => {
-      return [newGoal,...prevGoal];
+      const updatedGoal = [...prevGoal];
+      updatedGoal.unshift(newGoal);
+      return updatedGoal;
     });
+  }
+
+  const deleteGoalHandler = (goalId) => {
+    setGoal(prevGoal => {
+      const updatedGoal = prevGoal.filter(goal => goal.id !== goalId)
+      return updatedGoal;
+    })
+    
+
   }
 
   return (
     <section id='goals'>
       <CourseGoalInput addNewGoal={onAddNewGoalHandler}/>
-      <CourseGoalList goals = {goal}/>
+      <CourseGoalList goals = {goal} onDeleteGoal={deleteGoalHandler}/>
     </section>
   );
 }
