@@ -1,16 +1,25 @@
 import './App.css';
+import {useState} from 'react';
 import CourseGoalInput from './components/CourseGoalInput/CourseGoalInput';
 import CourseGoalList from './components/CourseGoalList/CourseGoalList'
 
+const DUMMY_GOALS = [
+  {id:'g1',text:'Do all exercises!'},
+  {id:'g2', text:'Finish the course!'}
+];
 function App() {
-  const dummy_goals = [
-    {id:'g1',text:'Do all exercises!'},
-    {id:'g2', text:'Finish the course!'}
-  ];
+  const [goal,setGoal] = useState(DUMMY_GOALS);
+
+  const onAddNewGoalHandler = (newGoal) => {
+    setGoal(prevGoal => {
+      return [newGoal,...prevGoal];
+    });
+  }
+
   return (
     <section id='goals'>
-      <CourseGoalInput/>
-      <CourseGoalList goals = {dummy_goals}/>
+      <CourseGoalInput addNewGoal={onAddNewGoalHandler}/>
+      <CourseGoalList goals = {goal}/>
     </section>
   );
 }
